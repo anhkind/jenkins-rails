@@ -1,4 +1,4 @@
-# Jenkins integration for Rails
+# Jenkins integration for Rails [![Build Status](https://travis-ci.org/anhkind/jenkins-rails.png?branch=master)](https://travis-ci.org/anhkind/jenkins-rails) [![Dependency Status](https://gemnasium.com/anhkind/jenkins-rails.png)](https://gemnasium.com/anhkind/jenkins-rails)
 
 TODO: Write a gem description
 
