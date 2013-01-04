@@ -54,7 +54,19 @@ module JenkinsApi
             xml.actions
             xml.description
             xml.keepDependencies "#{params[:keep_dependencies]}"
-            xml.properties
+            xml.properties {
+              xml.send("hudson.security.AuthorizationMatrixProperty") {
+                xml.permission "hudson.model.Item.Configure:#{params[:username]}"
+                xml.permission "hudson.model.Item.Read:#{params[:username]}"
+                xml.permission "hudson.model.Item.Discover:#{params[:username]}"
+                xml.permission "hudson.model.Item.Build:#{params[:username]}"
+                xml.permission "hudson.model.Item.Workspace:#{params[:username]}"
+                xml.permission "hudson.model.Item.Cancel:#{params[:username]}"
+                xml.permission "hudson.model.Run.Delete:#{params[:username]}"
+                xml.permission "hudson.model.Run.Update:#{params[:username]}"
+                xml.permission "hudson.scm.SCM.Tag:#{params[:username]}"
+              }
+            }
             # SCM related stuff
             if params[:scm_provider] == 'subversion'
               xml.scm(:class => "hudson.scm.SubversionSCM", :plugin => "subversion@1.39") {
@@ -116,7 +128,15 @@ module JenkinsApi
             xml.disabled "false"
             xml.blockBuildWhenDownstreamBuilding "#{params[:block_build_when_downstream_building]}"
             xml.blockBuildWhenUpstreamBuilding "#{params[:block_build_when_upstream_building]}"
-            xml.triggers.vector
+            xml.triggers.vector {
+              xml.send('com.cloudbees.jenkins.GitHubPushTrigger', :plugin => "github@1.4"){
+                xml.spec
+              }
+              xml.send('hudson.triggers.SCMTrigger'){
+                xml.spec "* * * * *"
+                xml.ignorePostCommitHooks 'false'
+              }
+            }
             xml.concurrentBuild "#{params[:concurrent_build]}"
             # Shell command stuff
             xml.builders {

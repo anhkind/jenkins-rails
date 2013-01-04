@@ -46,6 +46,9 @@ describe JenkinsApi::Client::Job do
 
       shell_command = n_xml.xpath("//hudson.tasks.Shell/command").first.content
       expect(shell_command).to eq("echo 'Hello World'")
+
+      authorization_matrix = n_xml.xpath("//hudson.security.AuthorizationMatrixProperty").first
+      expect(authorization_matrix).not_to be_blank
     end
   end
 

@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+export CI_REPORTS=results
+export RAILS_ENV=test
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" >/dev/null 2>&1
+
+cp config/database.yml.example config/database.yml
+bundle install
+bundle exec rake db:create db:migrate
+bundle exec rake
