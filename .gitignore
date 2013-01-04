@@ -18,4 +18,3 @@ tmp
 lib/*.iml
 .rvmrc
 .idea
-spec/*.yml

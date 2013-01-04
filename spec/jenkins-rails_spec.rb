@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Jenkins do
   describe '.configure' do
     it 'configures correctly' do
-      if File.exist? config_file
+      if config_with_credential?
         Jenkins.configure(
           :config_file => config_file
         )

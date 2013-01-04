@@ -1,0 +1,10 @@
+username: <%= ENV['JENKINS_USERNAME'] %>
+password: <%= ENV['JENKINS_PASSWORD'] %>
+host:     <%= ENV['JENKINS_HOST']     %>
+jobs:
+  -
+    name:         'Test App'
+    scm_provider: 'git'
+    scm_url:      'git://github.com/apraditya/sampleapp.git'
+    scm_branch:   'master'
+    shell_script: <%= File.join(SPEC_ROOT, 'fixtures', 'files', 'build') %>
