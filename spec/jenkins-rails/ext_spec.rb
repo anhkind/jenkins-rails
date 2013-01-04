@@ -6,15 +6,15 @@ describe JenkinsApi::Client::Job do
     @client = mock
     @job    = JenkinsApi::Client::Job.new(@client)
     @params = {
-      :name => 'job',
-      :keep_dependencies => true,
+      :name                                 => 'job',
+      :keep_dependencies                    => true,
       :block_build_when_downstream_building => true,
       :block_build_when_upstream_building   => true,
-      :concurrent_build => true ,
-      :scm_provider => 'git',
-      :scm_url => 'git@github.com:anhkind/jenkins-rails.git',
-      :scm_branch => 'master',
-      :shell_command => "echo 'Hello World'",
+      :concurrent_build                     => true,
+      :scm_provider                         => 'git',
+      :scm_url                              => 'git@github.com:anhkind/jenkins-rails.git',
+      :scm_branch                           => 'master',
+      :shell_command                        => "echo 'Hello World'"
     }
   end
 

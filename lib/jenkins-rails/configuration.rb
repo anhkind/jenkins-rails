@@ -1,8 +1,8 @@
 module Jenkins
   class Configuration
-    def initialize(config_file_path)
-      raise "Config file #{config_file_path} is missing!" if !File.exist? config_file_path
-      @config_file_path = config_file_path
+    def initialize(config_file)
+      raise "Config file #{config_file} is missing!" if !File.exist? config_file
+      @config_file = config_file
     end
 
     def username
@@ -23,13 +23,14 @@ module Jenkins
 
     def params
       jobs.each_index do |i|
-        jobs[i][:shell_command] = File.read(default_shell_file) if !jobs[i][:shell_command]
+        script_file = jobs[i][:shell_script] || default_shell_file
+        jobs[i][:shell_command] = File.read(script_file)
       end
       jobs
     end
 
     def config
-      @config ||= ActiveSupport::HashWithIndifferentAccess.new(YAML.load(ERB.new(File.read(@config_file_path)).result))
+      @config ||= ActiveSupport::HashWithIndifferentAccess.new(YAML.load(ERB.new(File.read(@config_file)).result))
     end
 
     private

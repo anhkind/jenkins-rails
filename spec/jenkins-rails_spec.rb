@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Jenkins do
   describe '.configure' do
     it 'configures correctly' do
-      config_file = File.join(SPEC_ROOT, 'jenkins.yml')
       if File.exist? config_file
         Jenkins.configure(
           :config_file => config_file
