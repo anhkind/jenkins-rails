@@ -1,6 +1,6 @@
-username: <%= ENV[JENKINS_USERNAME] %>
-password: <%= ENV[JENKINS_PASSWORD] %>
-host:     <%= ENV[JENKINS_HOST] %>
+username: <%= ENV['JENKINS_USERNAME'] %>
+password: <%= ENV['JENKINS_PASSWORD'] %>
+host:     <%= ENV['JENKINS_HOST'] %>
 jobs:
   -
     name:         'Test App',
