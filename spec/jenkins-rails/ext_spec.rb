@@ -49,6 +49,12 @@ describe JenkinsApi::Client::Job do
 
       authorization_matrix = n_xml.xpath("//hudson.security.AuthorizationMatrixProperty").first
       expect(authorization_matrix).not_to be_blank
+
+      github_push_trigger = n_xml.xpath("//com.cloudbees.jenkins.GitHubPushTrigger").first
+      expect(github_push_trigger).not_to be_blank
+
+      scm_trigger = n_xml.xpath("//hudson.triggers.SCMTrigger").first
+      expect(scm_trigger).not_to be_blank
     end
   end
 
