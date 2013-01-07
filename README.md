@@ -28,7 +28,7 @@ Create `jenkins.yml` file (with `erb`) as following structure and put to **Rails
             scm_provider: 'git'      #compulsory
             scm_url:      'git://github.com/apraditya/sampleapp.git'  #compulsory
             scm_branch:   'master'   #optional, default is 'master' if scm is git
-            shell_script: <%= Rails.root.join('build_script') %> #optional, details below
+            shell_script: 'relative/path/to/build/script'  #optional, details below
             keep_dependencies:                    false    #optional, default is 'false'
             block_build_when_downstream_building: false    #optional, default is 'false'
             block_build_when_upstream_building:   false    #optional, default is 'false'
@@ -40,7 +40,7 @@ Create `jenkins.yml` file (with `erb`) as following structure and put to **Rails
             name:         'Job 2' 
             ...
             
-The option `shell_script` can be configured with the absolute path of the build script.
+The option `shell_script` can be configured with the **relative** path of the build script from Rails app root path, e.g. `'script/jenkins_build_script'`, `'config/jenkins_build_script'` ...
 
 ### Rake task
 After adding the `jenkins.yml` to Rails app config folder, run the following rake task to configure Jenkins jobs

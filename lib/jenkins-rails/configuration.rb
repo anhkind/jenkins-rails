@@ -23,8 +23,7 @@ module Jenkins
 
     def params
       jobs.each_index do |i|
-        script_file = jobs[i][:shell_script] || default_shell_file
-        jobs[i][:shell_command] = File.read(script_file)
+        jobs[i][:shell_command] = File.read(script_file(jobs[i][:shell_script]))
       end
       jobs
     end
@@ -34,6 +33,10 @@ module Jenkins
     end
 
     private
+    def script_file(path)
+      path ? Rails.root.join(path) : default_shell_file
+    end
+
     def default_shell_file
       File.join(Jenkins::GEM_ROOT, 'bin', 'build')
     end

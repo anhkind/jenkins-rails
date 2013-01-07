@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Jenkins::Configuration do
   before do
+    Jenkins::Configuration.any_instance.stub(:script_file).and_return(file('build'))
     @configuration = Jenkins::Configuration.new(config_file)
   end
 
