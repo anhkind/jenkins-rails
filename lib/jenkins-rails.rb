@@ -11,9 +11,10 @@ module Jenkins
     jobs_params      = @configuration.params
 
     @client = JenkinsApi::Client.new(
-      :server_ip => @configuration.host,
-      :username  => options[:username] || @configuration.username,
-      :password  => options[:password] || @configuration.password
+      :server_ip   => @configuration.host,
+      :server_port => @configuration.port,
+      :username    => options[:username] || @configuration.username,
+      :password    => options[:password] || @configuration.password
     )
 
     jobs_params.each do |job_params|

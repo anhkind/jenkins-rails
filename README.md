@@ -26,6 +26,7 @@ Create `jenkins.yml` file (with `erb`) as following structure and put to **Rails
         username: <%= ENV['JENKINS_USERNAME'] %>
         password: <%= ENV['JENKINS_PASSWORD'] %>
         host:     <%= ENV['JENKINS_HOST']     %>
+        port:     80                                       #optional, default is 8080
         jobs
           -
             name:         'Job 1'    #compulsory

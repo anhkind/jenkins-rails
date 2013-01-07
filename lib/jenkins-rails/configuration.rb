@@ -17,6 +17,10 @@ module Jenkins
       config[:host]
     end
 
+    def port
+      config[:port]
+    end
+
     def jobs
       config[:jobs] ||= []
     end
