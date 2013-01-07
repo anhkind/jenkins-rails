@@ -7,11 +7,15 @@
 
 Add this line to your application's Gemfile:
 
-    gem 'jenkins-rails', :git => 'git://github.com/anhkind/jenkins-rails.git'
+    gem 'jenkins-rails'
 
 And then execute:
 
     $ bundle
+
+Or install it yourself as:
+
+    $ gem install jenkins-rails
 
 ## Usage
 
